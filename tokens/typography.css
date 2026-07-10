@@ -1,0 +1,38 @@
+/* KindGifts by Sebeccly — Typography tokens
+ * Display: Newsreader (warm, dignified serif). Body/UI: Plus Jakarta Sans.
+ */
+:root {
+  --font-display: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: var(--font-sans);
+  --font-num: var(--font-sans); /* tabular figures via font-feature-settings */
+
+  /* Type scale (fluid-friendly base, rem) */
+  --text-xs:   0.75rem;   /* 12px */
+  --text-sm:   0.875rem;  /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-md:   1.125rem;  /* 18px */
+  --text-lg:   1.25rem;   /* 20px */
+  --text-xl:   1.5rem;    /* 24px */
+  --text-2xl:  1.875rem;  /* 30px */
+  --text-3xl:  2.375rem;  /* 38px */
+  --text-4xl:  3rem;      /* 48px */
+  --text-5xl:  3.75rem;   /* 60px */
+  --text-6xl:  4.5rem;    /* 72px */
+
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-semibold:600;
+  --weight-bold:    700;
+  --weight-extrabold:800;
+
+  --leading-tight:  1.1;
+  --leading-snug:   1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed:1.7;
+
+  --tracking-tight: -0.02em;
+  --tracking-normal:0;
+  --tracking-wide:  0.02em;
+  --tracking-caps:  0.08em; /* uppercase eyebrows/labels */
+}

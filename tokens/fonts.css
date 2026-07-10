@@ -1,0 +1,7 @@
+/* KindGifts by Sebeccly — Webfonts
+ * NOTE: No brand fonts were provided. These are curated Google Fonts substitutions:
+ *   Newsreader (warm, dignified editorial serif) for display/headings
+ *   Plus Jakarta Sans (friendly humanist sans) for UI/body
+ * Flagged to the user — swap the @import if brand fonts are supplied.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');

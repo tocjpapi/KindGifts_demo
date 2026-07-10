@@ -1,0 +1,8 @@
+/* KindGifts by Sebeccly — Design System entry point.
+ * Consumers link this one file. @import lines only. */
+@import "tokens/fonts.css";
+@import "tokens/colors.css";
+@import "tokens/typography.css";
+@import "tokens/spacing.css";
+@import "tokens/radii.css";
+@import "tokens/base.css";

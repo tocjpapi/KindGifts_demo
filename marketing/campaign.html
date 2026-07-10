@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>KindGifts by Sebeccly — Marketing — Campaign</title>
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--cream); overflow-x: hidden; }
+  a { text-decoration: none; }
+  @media (max-width: 960px) {
+    .kg-desktop-nav, .kg-desktop-cta { display: none !important; }
+    .kg-mobile-toggle, .kg-mobile-menu { display: flex !important; }
+    .kg-hero-grid, .kg-trust-grid, .kg-3col, .kg-fee-grid, .kg-campaign-grid, .kg-fraud-row { grid-template-columns: 1fr !important; }
+  }
+  @media (max-width: 560px) {
+    .kg-hero-grid { padding: 40px 20px 52px !important; gap: 32px !important; }
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@0.544.0/dist/umd/lucide.min.js"></script>
+<script src="../_ds_bundle.js"></script>
+<script src="photos.js"></script>
+<script type="text/babel" src="shell.jsx"></script>
+<script type="text/babel" src="screens.jsx"></script>
+<script type="text/babel" src="extras.jsx"></script>
+<script type="text/babel">
+  function App() {
+    const [route, setRoute] = React.useState("campaign");
+    const go = (r) => {
+      if (r === "need") { window.location.href = "../webapp/onboarding.html"; return; }
+      if (r === "campaign") { window.location.href = "campaign.html"; return; }
+      if (r === "login") { window.location.href = "../webapp/login.html"; return; }
+      if (r === "dashboard") {
+        let role = "donor"; try { role = localStorage.getItem("kg_role") || "donor"; } catch (e) {}
+        const dest = role === "donor" ? "donor.html" : role === "hospital" ? "hospital.html" : "patient.html";
+        window.location.href = "../webapp/" + dest; return;
+      }
+      if (r === "logout") {
+        try { localStorage.removeItem("kg_loggedIn"); localStorage.removeItem("kg_role"); } catch (e) {}
+        setRoute("home"); window.scrollTo({ top: 0 }); return;
+      }
+      const map = {home:"home.html",how:"how-it-works.html",campaign:"campaign.html",partners:"partners.html",proof:"proof-points.html",transparency:"transparency.html",stories:"impact-stories.html",about:"about.html"};
+      if (map[r]) window.location.href = map[r];
+    };
+    const S = window.KGScreens, X = window.KGExtra;
+    React.useEffect(() => { if (window.lucide) window.lucide.createIcons(); });
+    let screen;
+    if (route === "how") screen = <S.HowItWorks go={go} />;
+    else if (route === "campaign") screen = <S.Campaign go={go} />;
+    else if (route === "partners") screen = <X.Partners />;
+    else if (route === "proof") screen = <X.ProofPoints go={go} />;
+    else if (route === "transparency") screen = <X.Transparency />;
+    else if (route === "stories") screen = <X.Stories />;
+    else if (route === "about") screen = <X.About />;
+    else screen = <S.Home go={go} />;
+    return (
+      <div>
+        <window.KGHeader route={route} go={go} />
+        {screen}
+        <window.KGFooter go={go} />
+        <window.KGWhatsAppWidget />
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>

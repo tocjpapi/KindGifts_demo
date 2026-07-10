@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>KindGifts by Sebeccly — Web App — Login</title>
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--cream); overflow-x: hidden; }
+  @media (max-width: 1000px) {
+    .kgw-3col { grid-template-columns: repeat(2,1fr) !important; }
+  }
+  @media (max-width: 820px) {
+    .kgw-2col, .kgw-3col { grid-template-columns: 1fr !important; }
+    .kgw-admin { grid-template-columns: 1fr !important; }
+    .kgw-admin-main { grid-template-columns: 1fr !important; }
+    .kgw-search { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@0.544.0/dist/umd/lucide.min.js"></script>
+<script src="../_ds_bundle.js"></script>
+<script src="../photos.js"></script>
+<script type="text/babel">
+  window.KGWIcon = function Icon({ name, size = 20, color = "currentColor", stroke = 2 }) {
+    const ref = React.useRef(null);
+    React.useEffect(() => {
+      if (ref.current && window.lucide) {
+        ref.current.innerHTML = "";
+        const el = document.createElement("i");
+        el.setAttribute("data-lucide", name);
+        ref.current.appendChild(el);
+        window.lucide.createIcons({ attrs: { width: size, height: size, stroke: color, "stroke-width": stroke }, nameAttr: "data-lucide" });
+      }
+    });
+    return <span ref={ref} style={{ display: "inline-flex", lineHeight: 0, color }} />;
+  };
+</script>
+<script type="text/babel" src="onboarding.jsx"></script>
+<script type="text/babel" src="auth.jsx"></script>
+<script type="text/babel" src="portal.jsx"></script>
+<script type="text/babel" src="dashboards.jsx"></script>
+<script type="text/babel" src="hospital.jsx"></script>
+<script type="text/babel" src="admin.jsx"></script>
+<script type="text/babel" src="flows.jsx"></script>
+<script type="text/babel">
+  const NS = window.KindGiftsBySebecclyDesignSystem_d02769;
+  const Icon = window.KGWIcon;
+
+  function App() {
+    const [view] = React.useState("login");
+    const views = [["login","Log In"],["onboarding","Need a Gift"],["tracker","Vetting Progress"],["patient","Patient Dashboard"],["discovery","Discover Campaigns"],["donor","Donor Dashboard"],["hospital","Hospital Portal"],["success","Gift Success"],["admin","Admin Portal"]];
+    React.useEffect(() => { if (window.lucide) window.lucide.createIcons(); });
+    const D = window.KGWDash, F = window.KGWFlows, H = window.KGWHospital;
+    const frame = (el) => <div style={{ maxWidth: 1160, margin: "0 auto", padding: "24px 20px 60px" }}>{el}</div>;
+    let screen;
+    if (view === "patient") screen = frame(<D.PatientDashboard />);
+    else if (view === "login") screen = <window.KGWAuth />;
+    else if (view === "tracker") screen = <F.VettingTracker />;
+    else if (view === "discovery") screen = <F.Discovery />;
+    else if (view === "success") screen = <F.DonorSuccess />;
+    else if (view === "donor") screen = frame(<D.DonorDashboard />);
+    else if (view === "hospital") screen = frame(<H.HospitalDashboard />);
+    else if (view === "admin") screen = frame(<window.KGWAdmin />);
+    else screen = <window.KGWOnboarding />;
+    return (
+      <div>
+        <div style={{ position: "sticky", top: 0, zIndex: 30, background: "var(--white)", borderBottom: "1px solid var(--border-subtle)", padding: "10px 16px", display: "flex", gap: 6, justifyContent: "center", flexWrap: "wrap" }}>
+          {views.map(([k, l]) => (
+            <a key={k} href={k + ".html"} style={{ padding: "8px 16px", borderRadius: 999, textDecoration: "none", cursor: "pointer", fontFamily: "var(--font-sans)", fontSize: 14, fontWeight: 700, background: view === k ? "var(--olive-600)" : "var(--sand-50)", color: view === k ? "#fff" : "var(--text-body)" }}>{l}</a>
+          ))}
+        </div>
+        {screen}
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>

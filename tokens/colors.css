@@ -1,0 +1,105 @@
+/* KindGifts by Sebeccly — Color tokens
+ * Brand primaries (from brief): #4B541D olive green, #DC1B73 bold pink.
+ * Warm, cream-based neutrals — never stark clinical white/gray.
+ */
+:root {
+  /* --- Olive green (primary / institutional / "Need a Gift") ---
+   * OKLCH scale, single hue 108.2. Anchored to the functional palette:
+   *   50  = subtle background (cards, alerts)   88/200 = light border (dividers, inputs)
+   *   300 = muted component (disabled states)   600 = base primary (buttons, headers, #4B541D)
+   *   700 = dark text / hover (high contrast, active states)
+   * Base/dark stops keep brand lightness so white text on olive-600/700/800 stays WCAG AA. */
+  --olive-50:  oklch(0.96 0.030 108.2); /* #F4F6E9 — subtle background */
+  --olive-100: oklch(0.93 0.045 108.2);
+  --olive-200: oklch(0.88 0.060 108.2); /* #DCE2B9 — light border */
+  --olive-300: oklch(0.75 0.100 108.2); /* #B2BD78 — muted component / disabled */
+  --olive-400: oklch(0.64 0.115 108.2);
+  --olive-500: oklch(0.54 0.110 108.2);
+  --olive-600: oklch(0.44 0.090 108.2); /* #4B541D — BRAND base primary */
+  --olive-700: oklch(0.375 0.075 108.2);/* dark text / hover / active */
+  --olive-800: oklch(0.30 0.060 108.2);
+  --olive-900: oklch(0.23 0.045 108.2);
+
+  /* --- Bold pink (action / heart / "Give a Gift") ---
+   * OKLCH scale, single hue 350.5. Functional palette:
+   *   50 = subtle background (badges, error tint)   200 = light border (interactive focus)
+   *   300 = muted component (secondary tags)         500 = base accent (CTA buttons, #DC1B73)
+   *   700 = dark hover (active state, links) */
+  --pink-50:  oklch(0.95 0.040 350.5); /* #FFF0F5 — subtle background */
+  --pink-100: oklch(0.90 0.070 350.5);
+  --pink-200: oklch(0.85 0.100 350.5); /* #FFC4DB — light border / focus */
+  --pink-300: oklch(0.70 0.180 350.5); /* #FF79AC — muted component / tags */
+  --pink-400: oklch(0.64 0.230 350.5);
+  --pink-500: oklch(0.58 0.270 350.5); /* #DC1B73 — BRAND base accent */
+  --pink-600: oklch(0.47 0.210 350.5); /* links / hover on light surfaces */
+  --pink-700: oklch(0.42 0.220 350.5); /* #9D004F — dark hover / active */
+  --pink-800: oklch(0.35 0.180 350.5);
+  --pink-900: oklch(0.28 0.140 350.5);
+
+  /* --- Warm neutrals (olive/cream-tinted) --- */
+  --cream:      #FBF9F4; /* app background */
+  --ivory:      #F5F2E9; /* alt section background */
+  --white:      #FFFFFF;
+  --sand-50:  #F7F6F1;
+  --sand-100: #EFEDE4;
+  --sand-200: #E2DFD3;
+  --sand-300: #CDC9B9;
+  --sand-400: #ABA692;
+  --sand-500: #837E68;
+  --sand-600: #605C4A;
+  --sand-700: #454234;
+  --sand-800: #2C2A20;
+  --sand-900: #1B1A12;
+  --ink:        #1F2012; /* warm near-black text */
+
+  /* --- Semantic --- */
+  --success:      #1F8A5B; /* verified / trust green (distinct from olive) */
+  --success-bg:   #E4F3EC;
+  --warning:      #B76E00;
+  --warning-bg:   #FBEFD9;
+  --danger:       #C0392B;
+  --danger-bg:    #FBE7E4;
+  --info:         #2A6F9E;
+  --info-bg:      #E4EFF6;
+  --whatsapp:     #25D366;
+  --whatsapp-dark:#128C7E;
+
+  /* --- Semantic aliases --- */
+  --bg-app:        var(--cream);
+  --bg-alt:        var(--ivory);
+  --surface-card:  var(--white);
+  --surface-sunken:var(--sand-50);
+  --border-subtle: var(--sand-200);
+  --border-strong: var(--sand-300);
+
+  --text-strong:   var(--ink);
+  --text-body:     var(--sand-700);
+  --text-muted:    var(--sand-500);
+  --text-on-dark:  #F6F5EE;
+  --text-on-pink:  #FFFFFF;
+
+  --brand-primary: var(--olive-600);
+  --brand-primary-hover: var(--olive-700);
+  --brand-action:  var(--pink-500);
+  --brand-action-hover:  var(--pink-600);
+
+  /* --- Functional palette roles (OKLCH scheme) --- */
+  --olive-subtle:  var(--olive-50);   /* cards, alerts */
+  --olive-border:  var(--olive-200);  /* dividers, inputs */
+  --olive-muted:   var(--olive-300);  /* disabled states */
+  --olive-base:    var(--olive-600);  /* buttons, headers */
+  --olive-hover:   var(--olive-700);  /* active states, high contrast */
+  --pink-subtle:   var(--pink-50);    /* badges, error tint */
+  --pink-border:   var(--pink-200);   /* interactive focus */
+  --pink-muted:    var(--pink-300);   /* secondary tags */
+  --pink-base:     var(--pink-500);   /* call-to-action buttons */
+  --pink-hover:    var(--pink-700);   /* active state, links */
+
+  --verified:      var(--success);
+  --progress-track:var(--sand-200);
+  --progress-fill: var(--pink-500);
+
+  /* Focus ring */
+  --ring: 0 0 0 3px color-mix(in srgb, var(--pink-500) 35%, transparent);
+  --ring-olive: 0 0 0 3px color-mix(in srgb, var(--olive-600) 30%, transparent);
+}
